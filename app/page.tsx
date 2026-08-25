@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "./_sections/Navbar";
 import Hero from "./_sections/Hero";
-import { Earth } from "@/components/earth/Earth";
+import { Earth } from "@/components/earth-old/Earth";
 import Fleet from "./_sections/Fleet";
 import Services from "./_sections/Services";
 import Network from "./_sections/Network";

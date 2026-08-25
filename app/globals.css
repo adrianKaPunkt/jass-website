@@ -3,7 +3,7 @@
 h1 {
   font-family: var(--font-inter);
   font-weight: 700;
-  font-size: clamp(30px, 6.4vw, 84px);
+  font-size: clamp(26px, 6.4vw, 84px);
   line-height: 1.2;
   max-width: 920px;
 }
