@@ -23,7 +23,7 @@ html {
 body {
   background: var(--navy-deep);
   color: var(--off-white);
-  font-family: "Source Serif 4", serif;
+  /* font-family: "Source Serif 4", serif; */
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

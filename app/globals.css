@@ -4,7 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --primary: #2563eb;
-  --secondary: #f59e0b;
+  --secondary: #d4ac6e;
 }
 
 @theme inline {
@@ -22,7 +22,7 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --primary: #3b82f6;
-    --secondary: #fbbf24;
+    --secondary: #d4ac6e;
   }
 }
 
