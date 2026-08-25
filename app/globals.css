@@ -1,10 +1,25 @@
 @import "tailwindcss";
 
+h1 {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: clamp(30px, 6.4vw, 84px);
+  line-height: 1.2;
+  max-width: 920px;
+}
+
+@layer base {
+  p {
+    @apply text-base leading-7 text-slate-400;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary: #2563eb;
-  --secondary: #d4ac6e;
+  --primary: #1769b0;
+  --secondary: #07182d;
+  --gold: #d4ac6e;
 }
 
 @theme inline {
@@ -21,8 +36,9 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --primary: #3b82f6;
-    --secondary: #d4ac6e;
+    --primary: #1769b0;
+    --secondary: #07182d;
+    --gold: #d4ac6e;
   }
 }
 

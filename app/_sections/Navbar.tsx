@@ -1,21 +1,22 @@
 const Navbar = () => {
   return (
-    <header>
-      <nav>
-        <div className="brand">
-          <div className="brand-mark">⚖</div>
-          <div className="brand-text">
-            J.A.S.S.<span>Justice Aeronautical Special Services</span>
-          </div>
-        </div>
-        <div className="nav-links">
+    <header className="fixed left-0 top-0 h-28 z-50 w-full bg-black/60 backdrop-blur-sm flex items-center justify-center">
+      <nav className="flex items-center justify-between w-295 py-4 mx-auto text-white">
+        <a href="#">
+          <div
+            aria-label="JASS Logo"
+            className="h-8 w-49 bg-white [mask:url('/images/jass.svg')_center/contain_no-repeat]"
+          />
+          <div className="text-[9px] -mt-2 uppercase">Justice Aeronautical Special Services</div>
+        </a>
+        <div className="flex gap-7 text-sm">
           <a href="#profil">Profil</a>
           <a href="#leistungen">Leistungen</a>
           <a href="#flotte">Flotte</a>
           <a href="#netzwerk">Netzwerk</a>
           <a href="#partner">Partner</a>
         </div>
-        <a className="nav-cta" href="#kontakt">
+        <a className="text-sm" href="#kontakt">
           Kontakt
         </a>
       </nav>

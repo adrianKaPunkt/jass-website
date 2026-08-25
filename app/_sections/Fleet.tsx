@@ -2,7 +2,9 @@ import React from "react";
 
 const Fleet = () => {
   return (
-    <section className="fleet" id="flotte">
+    <section className="bg-transparent border-t-secondary" id="fleet">
+      <div className="h-screen"></div>
+      <div className="h-screen"></div>
       <div className="wrap">
         <div className="section-head">
           <div className="section-label">Mission Fleet</div>

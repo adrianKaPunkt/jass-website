@@ -14,13 +14,13 @@ export default function Home() {
   return (
     <div className="relative flex flex-col flex-1 items-center justify-center bg-zinc-50 font-inter dark:bg-black">
       <Earth />
-      <main className="relative z-10 flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+      <main className="relative z-10 flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-10 px-16 bg-transparent sm:items-start">
         <Navbar />
         <Hero />
         <About />
         <Services />
-        <Fleet />
         <Network />
+        <Fleet />
         <Partner />
         <Contact />
         <Footer />
