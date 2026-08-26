@@ -4,11 +4,15 @@ import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import { EarthLights } from "./EarthLights";
-import { EarthMaterial } from "./EarthMaterial";
-import { getEarthLayoutPreset } from "./earth.config";
+import { GlobeBackGlow } from "./GlobeBackGlow";
+import { GlobeFrontGlow } from "./GlobeFrontGlow";
+import { GlobeLights } from "./GlobeLights";
+import { GlobeMarkers, NETWORK_LOCATIONS, getMarkerTargetRotationY } from "./GlobeMarkers";
+import { GlobeMaterial } from "./GlobeMaterial";
+import { getGlobeLayoutPreset } from "./globe.config";
+import { computeNetworkMetrics } from "./networkProgress";
 
-export function EarthScene() {
+export function GlobeScene() {
   const groupRef = useRef<THREE.Group>(null);
   const earthRef = useRef<THREE.Mesh>(null);
   const scrollProgressRef = useRef({
@@ -17,7 +21,7 @@ export function EarthScene() {
   });
 
   const { size, viewport } = useThree();
-  const layout = useMemo(() => getEarthLayoutPreset(size.width), [size.width]);
+  const layout = useMemo(() => getGlobeLayoutPreset(size.width), [size.width]);
 
   const [colorMap, bumpMap] = useTexture([
     "/earth/textures/earth-color.jpg",
@@ -26,7 +30,7 @@ export function EarthScene() {
 
   const preparedColorMap = useMemo(() => {
     const texture = colorMap.clone();
-    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapS = THREE.ClampToEdgeWrapping;
     texture.wrapT = THREE.ClampToEdgeWrapping;
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.needsUpdate = true;
@@ -35,7 +39,7 @@ export function EarthScene() {
 
   const preparedBumpMap = useMemo(() => {
     const texture = bumpMap.clone();
-    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapS = THREE.ClampToEdgeWrapping;
     texture.wrapT = THREE.ClampToEdgeWrapping;
     texture.needsUpdate = true;
     return texture;
@@ -44,18 +48,23 @@ export function EarthScene() {
   const referenceSize = Math.min(viewport.width, viewport.height);
   const earthRadius = referenceSize * layout.radiusFactor;
 
+  // Nudges the resting (Hero/Profil/Leistungen/Flotte) position up by 10% of
+  // the viewport height, on top of the existing radius-based offset.
+  const initialY =
+    -viewport.height / 2 - earthRadius * layout.initial.yRadiusOffset + viewport.height * 0.1;
+
+  const markerTargetAngles = useMemo(
+    () => NETWORK_LOCATIONS.map((loc) => getMarkerTargetRotationY(loc.lat, loc.lng)),
+    [],
+  );
+
   useEffect(() => {
     const updateScrollProgress = () => {
-      const network = document.getElementById("netzwerk");
-      const networkTop = network
-        ? network.getBoundingClientRect().top + window.scrollY
-        : window.innerHeight * layout.scrollRangeVh;
-      const networkRange = Math.max(window.innerHeight * layout.networkRangeVh, 1);
-      const networkStart = Math.max(networkTop - window.innerHeight * 0.45, 0);
+      const { network, networkStart } = computeNetworkMetrics(layout);
       const rotationRange = Math.max(networkStart, window.innerHeight * layout.scrollRangeVh, 1);
 
       scrollProgressRef.current = {
-        network: clamp((window.scrollY - networkStart) / networkRange, 0, 1),
+        network,
         rotation: clamp(window.scrollY / rotationRange, 0, 1),
       };
     };
@@ -68,7 +77,7 @@ export function EarthScene() {
       window.removeEventListener("scroll", updateScrollProgress);
       window.removeEventListener("resize", updateScrollProgress);
     };
-  }, [layout.networkRangeVh, layout.scrollRangeVh]);
+  }, [layout]);
 
   useFrame(() => {
     if (!groupRef.current || !earthRef.current) return;
@@ -91,7 +100,7 @@ export function EarthScene() {
       networkProgress,
     );
     const targetY = lerp(
-      -viewport.height / 2 - earthRadius * layout.initial.yRadiusOffset,
+      initialY,
       lerp(
         viewport.height * layout.story.yFactor,
         viewport.height * layout.final.yFactor,
@@ -101,40 +110,44 @@ export function EarthScene() {
     );
 
     groupRef.current.position.lerp(new THREE.Vector3(targetX, targetY, 0), 0.08);
-    groupRef.current.scale.lerp(
-      new THREE.Vector3(targetScale, targetScale, targetScale),
-      0.08,
-    );
+    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
     groupRef.current.rotation.z = THREE.MathUtils.lerp(
       groupRef.current.rotation.z,
       lerp(-0.04, 0.03, driftProgress),
       0.08,
     );
 
+    // Free spin only until the Network section is reached. From there the
+    // globe stops idling and instead swings to face whichever location is
+    // active for the current third of the section's scroll range.
+    const targetRotationY =
+      network > 0
+        ? markerTargetAngles[Math.min(2, Math.floor(network * 3))]
+        : -0.45 + rotation * Math.PI * 1.7;
+
     earthRef.current.rotation.y = THREE.MathUtils.lerp(
       earthRef.current.rotation.y,
-      -0.45 + rotation * Math.PI * 1.7,
+      targetRotationY,
       0.08,
     );
   });
 
   return (
     <>
-      <EarthLights />
+      <GlobeLights />
 
       <group
         ref={groupRef}
-        position={[
-          viewport.width * layout.initial.xFactor,
-          -viewport.height / 2 - earthRadius * layout.initial.yRadiusOffset,
-          0,
-        ]}
+        position={[viewport.width * layout.initial.xFactor, initialY, 0]}
         scale={layout.initial.scale}
       >
+        <GlobeBackGlow radius={earthRadius} />
         <mesh ref={earthRef} scale={earthRadius} rotation={[0.08, -0.45, 0]}>
           <sphereGeometry args={[1, 128, 128]} />
-          <EarthMaterial colorMap={preparedColorMap} bumpMap={preparedBumpMap} />
+          <GlobeMaterial colorMap={preparedColorMap} bumpMap={preparedBumpMap} />
+          <GlobeMarkers progressRef={scrollProgressRef} />
         </mesh>
+        <GlobeFrontGlow radius={earthRadius} />
       </group>
     </>
   );

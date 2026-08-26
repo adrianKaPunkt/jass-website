@@ -1,7 +1,9 @@
+import { Container } from "@/components/Container";
+
 const Contact = () => {
   return (
     <section id="kontakt">
-      <div className="wrap">
+      <Container>
         <div className="contact-grid">
           <div className="contact-info">
             <div className="section-label">Kontakt</div>
@@ -50,7 +52,7 @@ const Contact = () => {
             </button>
           </form>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

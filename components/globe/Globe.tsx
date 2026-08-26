@@ -1,8 +1,8 @@
 "use client";
 
-import { EarthCanvas } from "./EarthCanvas";
+import { GlobeCanvas } from "./GlobeCanvas";
 
-export function Earth() {
+export function Globe() {
   return (
     <>
       <div
@@ -35,8 +35,8 @@ export function Earth() {
         "
         aria-hidden="true"
       >
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <EarthCanvas />
+        <div className="sticky top-0 h-screen overflow-hidden dark:bg-transparent bg-blue-200">
+          <GlobeCanvas />
         </div>
       </div>
     </>

@@ -1,7 +1,9 @@
+import { Container } from "@/components/Container";
+
 const Partner = () => {
   return (
     <section className="partners" id="partner">
-      <div className="wrap">
+      <Container>
         <div className="section-head">
           <div className="section-label">Partnerbehörden</div>
           <h2>Ausgerichtet auf nationale und internationale Behörden</h2>
@@ -47,7 +49,7 @@ const Partner = () => {
           Die genannten Behörden und Organisationen dienen der Veranschaulichung potenzieller
           Auftraggeber und Einsatzpartner.
         </p>
-      </div>
+      </Container>
     </section>
   );
 };

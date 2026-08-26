@@ -1,11 +1,12 @@
 import React from "react";
+import { Container } from "@/components/Container";
 
 const Fleet = () => {
   return (
     <section className="bg-transparent border-t-secondary" id="fleet">
       <div className="h-screen"></div>
       <div className="h-screen"></div>
-      <div className="wrap">
+      <Container>
         <div className="section-head">
           <div className="section-label">Mission Fleet</div>
           <h2>Speziell konfigurierte Missionsluftfahrzeuge</h2>
@@ -82,7 +83,7 @@ const Fleet = () => {
             Flughafeninfrastruktur.
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

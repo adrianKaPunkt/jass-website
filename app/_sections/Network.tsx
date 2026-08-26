@@ -1,113 +1,81 @@
+"use client";
+
+import { Container } from "@/components/Container";
+import { NETWORK_LOCATIONS } from "@/components/globe/GlobeMarkers";
+import { useNetworkProgress } from "@/components/globe/useNetworkProgress";
+
 const Network = () => {
+  const progress = useNetworkProgress();
+  const activeIndex = Math.min(2, Math.floor(progress * 3));
+
   return (
-    <section id="netzwerk">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="section-label">Global Operations Network</div>
-          <h2>Internationale Präsenz für weltweite Behördenmissionen</h2>
-          <p>
-            Zentrale Einsatzsteuerung aus Luxemburg kombiniert mit regionalen Stützpunkten für kurze
-            Reaktionszeiten.
-          </p>
-        </div>
-        <div className="network-grid">
-          <div className="map-box">
-            <svg viewBox="0 0 400 288" preserveAspectRatio="none">
-              <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M20 0H0V20" fill="none" stroke="rgba(185,143,79,0.08)" strokeWidth="1" />
-                </pattern>
-                <marker id="dot" markerWidth="8" markerHeight="8" refX="4" refY="4">
-                  <circle cx="4" cy="4" r="3" fill="#d4ac6e" />
-                </marker>
-              </defs>
-              <rect width="400" height="288" fill="url(#grid)" />
-              <path
-                d="M120 90 L170 170"
-                stroke="#b98f4f"
-                strokeWidth="1.2"
-                strokeDasharray="4 4"
-                fill="none"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  from="60"
-                  to="0"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </path>
-              <path
-                d="M170 170 L300 150"
-                stroke="#b98f4f"
-                strokeWidth="1.2"
-                strokeDasharray="4 4"
-                fill="none"
-              >
-                <animate
-                  attributeName="stroke-dashoffset"
-                  from="60"
-                  to="0"
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </path>
-              <circle cx="120" cy="90" r="5" fill="#d4ac6e" />
-              <text
-                x="132"
-                y="86"
-                fill="#f2efe6"
-                fontFamily="Oswald,sans-serif"
-                fontSize="11"
-                letterSpacing="1"
-              >
-                LUX
-              </text>
-              <circle cx="170" cy="170" r="5" fill="#d4ac6e" />
-              <text
-                x="182"
-                y="166"
-                fill="#f2efe6"
-                fontFamily="Oswald,sans-serif"
-                fontSize="11"
-                letterSpacing="1"
-              >
-                TBJ
-              </text>
-              <circle cx="300" cy="150" r="5" fill="#d4ac6e" />
-              <text
-                x="312"
-                y="146"
-                fill="#f2efe6"
-                fontFamily="Oswald,sans-serif"
-                fontSize="11"
-                letterSpacing="1"
-              >
-                TMJ
-              </text>
-            </svg>
-          </div>
-          <div>
-            <p>
-              Die Kombination aus zentraler Einsatzsteuerung und regionalen Stützpunkten ermöglicht
-              eine flexible Durchführung von Behörden-, Rückführungs- und Sondermissionen weltweit.
-            </p>
-            <div className="net-list">
-              <div className="net-item">
-                <b>LUX — Luxemburg</b>
-                <span>Headquarters, Missionsplanung, Compliance</span>
+    // Taller than the viewport on purpose: the globe's rotation/position for
+    // this section is driven by scroll progress across roughly 1.2-1.35
+    // viewport-heights (components/globe/globe.config.ts networkRangeVh).
+    // The sticky inner panel keeps this section's own text in view for that
+    // entire span instead of scrolling past it early.
+    <section id="netzwerk" className="relative min-h-[240vh]">
+      <div className="sticky top-0 flex h-screen flex-col justify-center py-20">
+        <Container>
+          <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+            {/* Left column: kept empty on purpose, top to bottom — this is the
+                whitespace the persistent globe (positioned by
+                components/globe/GlobeScene.tsx) drifts through and arrives in
+                as this section is scrolled. */}
+            <div className="flex min-h-[320px] items-end justify-start">
+              <ul className="flex flex-col gap-3">
+                {NETWORK_LOCATIONS.map((location, index) => {
+                  const isActive = index === activeIndex && progress > 0;
+                  return (
+                    <li
+                      key={location.code}
+                      className={`font-mono text-sm tracking-[0.1em] transition-all duration-300 ${
+                        isActive ? "scale-110 text-[#d4ac6e]" : "text-slate-600"
+                      }`}
+                      style={{ transformOrigin: "left center" }}
+                    >
+                      {location.code}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <div>
+              <div className="mb-12">
+                <div className="mb-4 text-xs tracking-[0.24em] text-[#d4ac6e] uppercase">
+                  Global Operations Network
+                </div>
+                <h2 className="text-3xl leading-tight font-semibold text-white sm:text-4xl">
+                  Internationale Präsenz für weltweite Behördenmissionen
+                </h2>
+                <p className="mt-4 text-slate-400">
+                  Zentrale Einsatzsteuerung aus Luxemburg kombiniert mit regionalen Stützpunkten
+                  für kurze Reaktionszeiten.
+                </p>
               </div>
-              <div className="net-item">
-                <b>TBJ — Tunesien</b>
-                <span>J.A.S.S. Africa Division, Rückführungsmissionen</span>
-              </div>
-              <div className="net-item">
-                <b>TMJ — Usbekistan</b>
-                <span>J.A.S.S. Asia Division, Drehscheibe Zentralasien</span>
+
+              <div className="relative min-h-[220px]">
+                {NETWORK_LOCATIONS.map((location, index) => (
+                  <div
+                    key={location.code}
+                    className="absolute inset-0 transition-opacity duration-500"
+                    style={{
+                      opacity: index === activeIndex ? 1 : 0,
+                      pointerEvents: index === activeIndex ? "auto" : "none",
+                    }}
+                  >
+                    <div className="mb-2 text-xs tracking-[0.16em] text-[#d4ac6e] uppercase">
+                      {location.code} — {location.country}
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white">{location.name}</h3>
+                    <p className="mt-4 max-w-md text-slate-400">{location.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
     </section>
   );

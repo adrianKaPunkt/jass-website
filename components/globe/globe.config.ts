@@ -1,6 +1,6 @@
-export type EarthBreakpoint = "mobile" | "tablet" | "desktop" | "wide";
+export type GlobeBreakpoint = "mobile" | "tablet" | "desktop" | "wide";
 
-export type EarthLayoutPreset = {
+export type GlobeLayoutPreset = {
   minWidth: number;
   radiusFactor: number;
   scrollRangeVh: number;
@@ -22,7 +22,7 @@ export type EarthLayoutPreset = {
   };
 };
 
-export const EARTH_LAYOUT: Record<EarthBreakpoint, EarthLayoutPreset> = {
+export const GLOBE_LAYOUT: Record<GlobeBreakpoint, GlobeLayoutPreset> = {
   mobile: {
     minWidth: 0,
     radiusFactor: 0.42,
@@ -60,7 +60,7 @@ export const EARTH_LAYOUT: Record<EarthBreakpoint, EarthLayoutPreset> = {
       scale: 0.7,
     },
     final: {
-      xFactor: 0.06,
+      xFactor: -0.06,
       yFactor: 0.14,
       scale: 0.58,
     },
@@ -81,7 +81,7 @@ export const EARTH_LAYOUT: Record<EarthBreakpoint, EarthLayoutPreset> = {
       scale: 0.72,
     },
     final: {
-      xFactor: 0.18,
+      xFactor: -0.18,
       yFactor: 0.18,
       scale: 0.62,
     },
@@ -102,18 +102,18 @@ export const EARTH_LAYOUT: Record<EarthBreakpoint, EarthLayoutPreset> = {
       scale: 0.7,
     },
     final: {
-      xFactor: 0.2,
+      xFactor: -0.2,
       yFactor: 0.18,
       scale: 0.6,
     },
   },
 };
 
-const ORDERED_BREAKPOINTS: EarthBreakpoint[] = ["mobile", "tablet", "desktop", "wide"];
+const ORDERED_BREAKPOINTS: GlobeBreakpoint[] = ["mobile", "tablet", "desktop", "wide"];
 
-export function getEarthLayoutPreset(width: number) {
+export function getGlobeLayoutPreset(width: number) {
   return ORDERED_BREAKPOINTS.reduce((current, breakpoint) => {
-    const preset = EARTH_LAYOUT[breakpoint];
+    const preset = GLOBE_LAYOUT[breakpoint];
     return width >= preset.minWidth ? preset : current;
-  }, EARTH_LAYOUT.mobile);
+  }, GLOBE_LAYOUT.mobile);
 }

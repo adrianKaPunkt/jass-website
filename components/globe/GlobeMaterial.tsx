@@ -7,15 +7,15 @@ type EarthMaterialProps = {
   bumpMap: THREE.Texture;
 };
 
-export function EarthMaterial({ colorMap, bumpMap }: EarthMaterialProps) {
+export function GlobeMaterial({ colorMap, bumpMap }: EarthMaterialProps) {
   return (
     <meshStandardMaterial
       map={colorMap}
       bumpMap={bumpMap}
       bumpScale={0.012}
-      color="#8fa2ad"
-      emissive="#07111a"
-      emissiveIntensity={0.08}
+      color="#a9bac4"
+      emissive="#0b1a25"
+      emissiveIntensity={0.13}
       roughness={0.96}
       metalness={0.02}
     />

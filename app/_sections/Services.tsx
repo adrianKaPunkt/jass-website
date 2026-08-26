@@ -1,7 +1,9 @@
+import { Container } from "@/components/Container";
+
 const Services = () => {
   return (
-    <section id="leistungen">
-      <div className="wrap">
+    <section id="services" className="mt-100">
+      <Container>
         <div className="section-head">
           <div className="section-label">Leistungsportfolio</div>
           <h2>Spezialisierte Luft- und Missionsdienstleistungen</h2>
@@ -10,10 +12,10 @@ const Services = () => {
             organisatorischen Anforderungen des Auftraggebers angepasst.
           </p>
         </div>
-        <div className="services-grid">
-          <div className="scard">
+        <div className="flex gap-8 mt-12">
+          <div className="">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -27,7 +29,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -40,7 +42,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -55,7 +57,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -68,7 +70,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -82,7 +84,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -95,7 +97,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -108,7 +110,7 @@ const Services = () => {
           </div>
           <div className="scard">
             <svg
-              className="icon"
+              className="w-8 h-8"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -120,7 +122,7 @@ const Services = () => {
             <p>Permanente Internetverbindung hält Einsatzkräfte mit Behörden verbunden.</p>
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

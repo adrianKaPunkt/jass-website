@@ -1,9 +1,9 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { EarthScene } from "./EarthScene";
+import { GlobeScene } from "./GlobeScene";
 
-export function EarthCanvas() {
+export function GlobeCanvas() {
   return (
     <Canvas
       camera={{
@@ -24,7 +24,7 @@ export function EarthCanvas() {
         pointerEvents: "none",
       }}
     >
-      <EarthScene />
+      <GlobeScene />
     </Canvas>
   );
 }
