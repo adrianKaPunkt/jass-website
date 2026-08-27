@@ -13,9 +13,9 @@ export function GlobeMaterial({ colorMap, bumpMap }: EarthMaterialProps) {
       map={colorMap}
       bumpMap={bumpMap}
       bumpScale={0.012}
-      color="#a9bac4"
+      color="#a8bdc9"
       emissive="#0b1a25"
-      emissiveIntensity={0.13}
+      emissiveIntensity={0.08}
       roughness={0.96}
       metalness={0.02}
     />

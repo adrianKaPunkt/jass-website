@@ -13,9 +13,9 @@ type GlobeFrontGlowProps = {
 
 export const GLOBE_FRONT_GLOW_DEFAULTS = {
   color: "#1769B0",
-  intensity: 0.08,
+  intensity: 0.105,
   scaleMultiplier: 1.006,
-  power: 1.7,
+  power: 1.9,
 } as const;
 
 const VERTEX_SHADER = /* glsl */ `
