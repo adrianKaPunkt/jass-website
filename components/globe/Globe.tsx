@@ -39,8 +39,8 @@ export function Globe() {
         aria-hidden="true"
       >
         <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#050709_0%,#080b10_52%,#020304_100%)]" />
-          <div className="absolute inset-0 opacity-[0.045] bg-amber-50 [background-image:linear-gradient(rgba(176,205,229,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(176,205,229,0.8)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(circle_at_50%_55%,black_0%,transparent_68%)]" />
+          <div className="absolute inset-0 bg-white dark:bg-[linear-gradient(180deg,#050709_0%,#080b10_52%,#020304_100%)]" />
+          <div className="absolute inset-0 opacity-0 dark:opacity-[0.045] bg-amber-50 [background-image:linear-gradient(rgba(176,205,229,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(176,205,229,0.8)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:radial-gradient(circle_at_50%_55%,black_0%,transparent_68%)]" />
         </div>
       </div>
 
@@ -56,7 +56,7 @@ export function Globe() {
         "
         aria-hidden="true"
       >
-        <div className="sticky top-0 h-screen overflow-hidden dark:bg-transparent bg-blue-200">
+        <div className="sticky top-0 h-screen overflow-hidden bg-transparent">
           <GlobeCanvas />
         </div>
       </div>

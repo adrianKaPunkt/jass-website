@@ -30,7 +30,7 @@ const Network = () => {
                     <li
                       key={location.code}
                       className={`font-mono text-sm tracking-[0.1em] transition-all duration-300 ${
-                        isActive ? "scale-110 text-[#d4ac6e]" : "text-slate-600"
+                        isActive ? "scale-110 text-gold" : "text-slate-500 dark:text-slate-600"
                       }`}
                       style={{ transformOrigin: "left center" }}
                     >
@@ -43,13 +43,13 @@ const Network = () => {
 
             <div>
               <div className="mb-12">
-                <div className="mb-4 text-xs tracking-[0.24em] text-[#d4ac6e] uppercase">
+                <div className="mb-4 text-xs tracking-[0.24em] text-gold uppercase">
                   Global Operations Network
                 </div>
-                <h2 className="text-3xl leading-tight font-semibold text-white sm:text-4xl">
+                <h2 className="text-3xl leading-tight font-semibold text-secondary sm:text-4xl dark:text-white">
                   Internationale Präsenz für weltweite Behördenmissionen
                 </h2>
-                <p className="mt-4 text-slate-400">
+                <p className="mt-4">
                   Zentrale Einsatzsteuerung aus Luxemburg kombiniert mit regionalen Stützpunkten
                   für kurze Reaktionszeiten.
                 </p>
@@ -65,11 +65,13 @@ const Network = () => {
                       pointerEvents: index === activeIndex ? "auto" : "none",
                     }}
                   >
-                    <div className="mb-2 text-xs tracking-[0.16em] text-[#d4ac6e] uppercase">
+                    <div className="mb-2 text-xs tracking-[0.16em] text-gold uppercase">
                       {location.code} — {location.country}
                     </div>
-                    <h3 className="text-2xl font-semibold text-white">{location.name}</h3>
-                    <p className="mt-4 max-w-md text-slate-400">{location.description}</p>
+                    <h3 className="text-2xl font-semibold text-secondary dark:text-white">
+                      {location.name}
+                    </h3>
+                    <p className="mt-4 max-w-md">{location.description}</p>
                   </div>
                 ))}
               </div>

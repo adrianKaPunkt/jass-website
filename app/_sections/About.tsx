@@ -31,7 +31,7 @@ const About = () => {
   };
 
   return (
-    <section id="about">
+    <section id="about" className="py-24 lg:py-32">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
@@ -64,31 +64,31 @@ const About = () => {
           <div></div>
         </div>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"
+          className="grid grid-cols-1 gap-px border border-black/10 bg-black/10 sm:grid-cols-2 dark:border-white/10 dark:bg-white/10"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={cardsViewport}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="pcard">
-            <div className="num">01</div>
-            <h3>Flugtransport</h3>
-            <p>Sicherer, zuverlässiger Lufttransport mit passenden Flugzeuglösungen.</p>
+          <div className="bg-white p-7 dark:bg-black">
+            <div className="font-mono text-xs tracking-widest text-primary">01</div>
+            <h3 className="mt-3">Flugtransport</h3>
+            <p className="mt-2 text-sm">Sicherer, zuverlässiger Lufttransport mit passenden Flugzeuglösungen.</p>
           </div>
-          <div className="pcard">
-            <div className="num">02</div>
-            <h3>Sicherheit</h3>
-            <p>Spezialisierte Sicherheitskonzepte und geschultes Personal für jede Mission.</p>
+          <div className="bg-white p-7 dark:bg-black">
+            <div className="font-mono text-xs tracking-widest text-primary">02</div>
+            <h3 className="mt-3">Sicherheit</h3>
+            <p className="mt-2 text-sm">Spezialisierte Sicherheitskonzepte und geschultes Personal für jede Mission.</p>
           </div>
-          <div className="pcard">
-            <div className="num">03</div>
-            <h3>Planung</h3>
-            <p>Umfassende Planung und Koordination aller operativen und logistischen Abläufe.</p>
+          <div className="bg-white p-7 dark:bg-black">
+            <div className="font-mono text-xs tracking-widest text-primary">03</div>
+            <h3 className="mt-3">Planung</h3>
+            <p className="mt-2 text-sm">Umfassende Planung und Koordination aller operativen und logistischen Abläufe.</p>
           </div>
-          <div className="pcard">
-            <div className="num">04</div>
-            <h3>Behörde</h3>
-            <p>Behördliche Koordination und Kommunikation auf allen Ebenen.</p>
+          <div className="bg-white p-7 dark:bg-black">
+            <div className="font-mono text-xs tracking-widest text-primary">04</div>
+            <h3 className="mt-3">Behörde</h3>
+            <p className="mt-2 text-sm">Behördliche Koordination und Kommunikation auf allen Ebenen.</p>
           </div>
         </motion.div>
       </Container>

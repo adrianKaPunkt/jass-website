@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
+import { useIsDarkMode } from "@/hooks/useIsDarkMode";
 import { GlobeBackGlow } from "./GlobeBackGlow";
 import { GlobeFrontGlow } from "./GlobeFrontGlow";
 import { GlobeLights } from "./GlobeLights";
@@ -13,6 +14,7 @@ import { getGlobeLayoutPreset } from "./globe.config";
 import { computeNetworkMetrics } from "./networkProgress";
 
 export function GlobeScene() {
+  const isDark = useIsDarkMode();
   const groupRef = useRef<THREE.Group>(null);
   const earthRef = useRef<THREE.Mesh>(null);
   const scrollProgressRef = useRef({
@@ -134,17 +136,17 @@ export function GlobeScene() {
 
   return (
     <>
-      <GlobeLights />
+      <GlobeLights isDark={isDark} />
 
       <group
         ref={groupRef}
         position={[viewport.width * layout.initial.xFactor, initialY, 0]}
         scale={layout.initial.scale}
       >
-        <GlobeBackGlow radius={earthRadius} />
+        {isDark && <GlobeBackGlow radius={earthRadius} />}
         <mesh ref={earthRef} scale={earthRadius} rotation={[0.08, -0.45, 0]}>
           <sphereGeometry args={[1, 128, 128]} />
-          <GlobeMaterial colorMap={preparedColorMap} bumpMap={preparedBumpMap} />
+          <GlobeMaterial colorMap={preparedColorMap} bumpMap={preparedBumpMap} isDark={isDark} />
           <GlobeMarkers progressRef={scrollProgressRef} />
         </mesh>
         <GlobeFrontGlow radius={earthRadius} />

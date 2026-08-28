@@ -25,22 +25,26 @@ const Hero = () => {
           >
             <div>
               <div>
-                <div className="text-primary text-sm mb-2 tracking-[0.4em]">J.A.S.S.</div>
-                <h1>SECURE AVIATION OPERATATIONS FOR GOVERNMENT MISSIONS.</h1>
+                <div className="text-secondary dark:text-primary text-sm mb-2 tracking-[0.4em]">
+                  J.A.S.S.
+                </div>
+                <h1 className="text-primary dark:text-white">
+                  SECURE AVIATION OPERATATIONS FOR GOVERNMENT MISSIONS.
+                </h1>
               </div>
               <div className="mt-8">
-                <p>
+                <p className="text-secondary dark:text-white text-sm lg:text-base">
                   Specialized Aviation and Operational Support for Governmental Institutions,
                   International Organizations and Security Authorities.
                 </p>
               </div>
               <div className="mt-8 flex flex-col lg:flex-row gap-6 w-full ">
-                <div className="w-full lg:w-fit bg-primary px-6 py-4 text-sm hover:bg-white hover:text-secondary text-center cursor-pointer">
+                <div className="w-full lg:w-fit bg-primary px-6 py-4 text-sm hover:bg-secondary dark:hover:bg-white text-white hover:text-white dark:hover:text-secondary text-center cursor-pointer">
                   <Link className="" href="#kontakt">
                     MISSION REQUEST
                   </Link>
                 </div>
-                <div className="border border-primary text-sm px-6 py-4 hover:bg-primary w-full lg:w-fit text-center cursor-pointer">
+                <div className="border border-primary text-sm px-6 py-4 hover:border-secondary dark:hover:border-white w-full lg:w-fit text-center cursor-pointer">
                   <Link className="" href="#leistungen">
                     OUR SERVICES
                   </Link>

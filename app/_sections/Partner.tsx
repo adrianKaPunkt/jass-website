@@ -1,51 +1,66 @@
 import { Container } from "@/components/Container";
 
+const PARTNER_CATEGORIES = [
+  {
+    title: "Europäische Behörden & internationale Organisationen",
+    tags: ["Frontex", "Europol", "Cepol", "Eurojust", "Interpol", "IOM", "UNHCR", "ICAO"],
+  },
+  {
+    title: "Polizei & Grenzschutz — Auswahl",
+    tags: [
+      "Bundespolizei (DE)",
+      "Police Nationale (FR)",
+      "Polizia di Stato (IT)",
+      "Police Fédérale (BE)",
+      "Politie (NL)",
+      "Fedpol (CH)",
+      "Rigspolitiet (DK)",
+      "Polismyndigheten (SE)",
+    ],
+  },
+  {
+    title: "Ministerien & Migrationsbehörden — Auswahl",
+    tags: [
+      "BMI (DE)",
+      "Ministère de Intérieur (FR)",
+      "Ministero Interno (IT)",
+      "EJPD (CH)",
+      "Migrationsverket (SE)",
+    ],
+  },
+];
+
 const Partner = () => {
   return (
-    <section className="partners" id="partner">
+    <section
+      className="border-y border-black/10 bg-black/2 py-24 lg:py-32 dark:border-white/10 dark:bg-white/2"
+      id="partner"
+    >
       <Container>
         <div className="section-head">
-          <div className="section-label">Partnerbehörden</div>
-          <h2>Ausgerichtet auf nationale und internationale Behörden</h2>
+          <div className="section-label mb-3">Partnerbehörden</div>
+          <h2 className="mb-4">Ausgerichtet auf nationale und internationale Behörden</h2>
           <p>
             Innen- und Justizministerien, Polizei- und Grenzschutzbehörden, Strafverfolgungs- und
             Migrationsbehörden sowie europäische und internationale Organisationen.
           </p>
         </div>
-        <div className="partner-cat">
-          <h4>Europäische Behörden &amp; internationale Organisationen</h4>
-          <div className="partner-tags">
-            <span>Frontex</span>
-            <span>Europol</span>
-            <span>Cepol</span>
-            <span>Eurojust</span>
-            <span>Interpol</span>
-            <span>IOM</span>
-            <span>UNHCR</span>
-            <span>ICAO</span>
+        {PARTNER_CATEGORIES.map((category) => (
+          <div key={category.title} className="mb-11">
+            <h4 className="mb-4">{category.title}</h4>
+            <div className="flex flex-wrap gap-2.5">
+              {category.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-black/15 px-4 py-2 text-xs tracking-wide text-secondary uppercase dark:border-white/15 dark:text-slate-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="partner-cat">
-          <h4>Polizei &amp; Grenzschutz — Auswahl</h4>
-          <div className="partner-tags">
-            <span>Bundespolizei (DE)</span>
-            <span>Police Nationale (FR)</span>
-            <span>Polizia di Stato (IT)</span> <span>Police Fédérale (BE)</span>
-            <span>Politie (NL)</span>
-            <span>Fedpol (CH)</span> <span>Rigspolitiet (DK)</span>
-            <span>Polismyndigheten (SE)</span>
-          </div>
-        </div>
-        <div className="partner-cat">
-          <h4>Ministerien &amp; Migrationsbehörden — Auswahl</h4>
-          <div className="partner-tags">
-            <span>BMI (DE)</span>
-            <span>Ministère de Intérieur (FR)</span>
-            <span>Ministero Interno (IT)</span> <span>EJPD (CH)</span>
-            <span>Migrationsverket (SE)</span>
-          </div>
-        </div>
-        <p className="partner-note">
+        ))}
+        <p className="mt-3 text-xs text-slate-500 italic">
           Die genannten Behörden und Organisationen dienen der Veranschaulichung potenzieller
           Auftraggeber und Einsatzpartner.
         </p>
