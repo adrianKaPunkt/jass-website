@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed left-0 top-0 z-50 h-28 w-full bg-white/60 backdrop-blur-sm dark:bg-black/60">
+    <header className="fixed left-0 top-0 z-50 h-28 w-full bg-white/50 backdrop-blur-sm dark:bg-black/60 shadow-2xl shadow-black/5 dark:shadow-white/5">
       <Container>
         <nav className="flex h-28 items-center justify-between text-secondary dark:text-white">
           <a href="#" className="shrink-0">
